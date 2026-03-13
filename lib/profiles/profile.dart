@@ -5,8 +5,24 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Deneme")),
+    return MaterialApp(
+
+    );
+  }
+}
+
+class _FavorilerimState extends StatefulWidget {
+  const _FavorilerimState({super.key});
+
+  @override
+  State<_FavorilerimState> createState() => __FavorilerimStateState();
+}
+
+class __FavorilerimStateState extends State<_FavorilerimState> {
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      
     );
   }
 }

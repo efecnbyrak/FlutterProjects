@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp( // MaterialApp uygulamanın temel yapısıdır
       debugShowCheckedModeBanner: false, // Sağ üstte çıkan DEBUG yazısını kaldırır
-      title: "Flutter Öğreniyorum", // Uygulama başlığı
+      title: "Gezdirelim", // Uygulama başlığı
       home: const HomePage(), // Uygulama açıldığında gösterilecek sayfa
     );
   }
@@ -26,11 +26,33 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold( // Scaffold sayfanın ana iskeletidir
-      appBar: AppBar( // Üstteki bar
-        title: const Text("Ana Sayfa"), // AppBar başlığı
-        centerTitle: true,
-        automaticallyImplyLeading: false, // Başlığı ortalar
+    return Scaffold( 
+      appBar: AppBar(
+        backgroundColor: Colors.blueAccent,
+      automaticallyImplyLeading: false,
+      title: Text(
+        "Gezdirelim",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontFamily: "Mont"
+          ),
+        ),
+      actions: [
+        IconButton(
+          onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProfilePage())
+              );
+            }, 
+            icon: Icon(Icons.account_circle_rounded,
+            size: 30,
+            color: Colors.white,
+            ),
+          ),
+        SizedBox(width: 25),
+        ],
       ),
       body: Center( // İçeriği ekranın ortasına yerleştirir
         child: Column( // Column widgetları dikey olarak sıralar
@@ -57,6 +79,18 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
+
+            /* BUTTONLAR
+
+            OutlinedButton(onPressed: (){}, child: Text("data")),
+            IconButton(onPressed: (){}, icon: Icon(Icons.home)),
+            TextButton(onPressed: (){}, child: Text("data")),
+            FloatingActionButton(onPressed: (){}),
+            FilledButton(onPressed: (){}, child: Text("efe")),
+            RawMaterialButton( onPressed: () {} , child: Text("data")), 
+
+            */
+
             SizedBox(height: 20),
             ElevatedButton( // Tıklanabilir buton
               onPressed: () { // Butona basıldığında çalışacak kod
@@ -66,46 +100,12 @@ class HomePage extends StatelessWidget {
                     builder: (context) => MyWidget()
                   )
                 );
-                MyWidget();
                 print("Açıldı.");
               },
               child: Text("Butona Bas"), // Buton üzerinde yazan yazı
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  
-                }, 
-                child: Icon(Icons.add)
-              ),
-              SizedBox(width: 20),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context)  => ProfilePage()
-                      )
-                    );
-                  //ProfilePage();
-                },
-                child: Icon(Icons.home))
-            ],
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton( // Sağ alttaki yuvarlak buton
-        onPressed: () {
-          print("FAB tıklandı");
-        },
-        child: Icon(Icons.add), // Buton içindeki ikon
       ),
     );
   }
@@ -184,6 +184,27 @@ class _MyWidgetState extends State<MyWidget> {
             counter = 0;
           });
         }
+      ),
+    );
+  }
+}
+
+class BottomBar extends StatelessWidget {
+  const BottomBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
+      bottomNavigationBar: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+            IconButton(
+              onPressed: (){
+
+              },
+              icon: Icon(Icons.home))
+        ],
       ),
     );
   }
